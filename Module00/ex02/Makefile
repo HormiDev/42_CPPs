@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/21 01:32:12 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/06/22 18:44:17 by ide-dieg         ###   ########.fr        #
+#    Created: 2025/06/22 18:28:52 by ide-dieg          #+#    #+#              #
+#    Updated: 2025/06/24 22:07:42 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,10 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = phonebook
+NAME = dream_job
 
-SRCS =	main.cpp \
-		contact.cpp \
-		phonebook.cpp
+SRCS =	tests.cpp \
+		Account.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -75,9 +74,9 @@ ide-dieg:
 	@echo "$(NARANJA)╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═════╝ ╚══════╝  ╚═══╝  $(VERDE)       ╚═╝  $(NC)"
 
 cpp_title:
-	@echo " ____  _  _   __   __ _  ____  ____   __    __  __ _ "
-	@echo "(  _ \/ )( \ /  \ (  ( \(  __)(  _ \ /  \  /  \(  / )"
-	@echo " ) __/) __ ((  O )/    / ) _)  ) _ ((  O )(  O ))  ( "
-	@echo "(__)  \_)(_/ \__/ \_)__)(____)(____/ \__/  \__/(__\_)"
+	@echo " ____  ____  ____   __   _  _          __   __  ____  "
+	@echo "(    \(  _ \(  __) / _\ ( \/ )       _(  ) /  \(  _ \ "
+	@echo " ) D ( )   / ) _) /    \/ \/ \ ____ / \) \(  O )) _ ( "
+	@echo "(____/(__\_)(____)\_/\_/\_)(_/(____)\____/ \__/(____/ "
 
 .PHONY: all clean fclean re ide-dieg cpp_title
