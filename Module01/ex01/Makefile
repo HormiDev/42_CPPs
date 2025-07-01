@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 21:37:51 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/07/01 17:52:28 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/07/01 18:46:12 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,10 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = BraiiiiiiinnnzzzZ
+NAME = Moar_brainz
 
 SRCS =	main.cpp \
-		newZombie.cpp \
-		randomChump.cpp \
+		zombieHorde.cpp \
 		Zombie.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
