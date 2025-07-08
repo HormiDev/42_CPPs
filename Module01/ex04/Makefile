@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/30 21:37:51 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/07/07 13:28:15 by ide-dieg         ###   ########.fr        #
+#    Created: 2025/07/02 08:00:49 by ide-dieg          #+#    #+#              #
+#    Updated: 2025/07/07 13:56:19 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,11 +18,9 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = Moar_brainz
+NAME = Sed_is_for_losers
 
 SRCS =	main.cpp \
-		zombieHorde.cpp \
-		Zombie.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 

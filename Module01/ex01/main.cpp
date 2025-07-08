@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 13:27:28 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/07/01 18:51:43 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/07/07 13:57:14 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	if (argc != 3)
 	{
 		std::cerr << "\033[31m" << "Error: Invalid arguments." << std::endl;
-		std::cerr << "\033[33m"<< "Use: " << argv[0] << "<Number of zombies> <Name>" << "\033[0m" << std::endl;
+		std::cerr << "\033[33m"<< "Use: " << argv[0] << " <Number of zombies> <Name>" << "\033[0m" << std::endl;
 		return 1;
 	}
 	n_zombies = atoi(argv[1]);
