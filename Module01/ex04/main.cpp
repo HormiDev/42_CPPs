@@ -6,13 +6,14 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:18:39 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/07/08 18:35:42 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2025/07/16 22:19:44 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "buffer_lines.hpp"
 
 int main(int argc, char **argv)
 {
@@ -44,17 +45,8 @@ int main(int argc, char **argv)
 		infile.close();
 		return 1;
 	}
-	std::string line;
-	while (std::getline(infile, line))
-	{
-		size_t pos = 0;
-		while ((pos = line.find(searchString, pos)) != std::string::npos)
-		{
-			line.replace(pos, searchString.length(), replaceString);
-			pos += replaceString.length();
-		}
-		outfile << line << std::endl;
-	}
+	buffer_lines buffer(&infile, searchString, replaceString);
+	
 	infile.close();
 	outfile.close();
 	return 0;

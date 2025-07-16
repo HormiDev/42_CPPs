@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/07/02 08:00:49 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/07/07 13:56:19 by ide-dieg         ###   ########.fr        #
+#    Updated: 2025/07/16 22:06:11 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = Sed_is_for_losers
 
 SRCS =	main.cpp \
+		buffer_lines.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 
