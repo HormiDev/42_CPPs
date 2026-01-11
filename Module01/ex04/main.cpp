@@ -6,14 +6,14 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:18:39 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/07/16 22:19:44 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/01/11 05:46:48 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string>
 #include <iostream>
 #include <fstream>
-#include "buffer_lines.hpp"
+#include <vector>
 
 int main(int argc, char **argv)
 {
@@ -45,7 +45,35 @@ int main(int argc, char **argv)
 		infile.close();
 		return 1;
 	}
-	buffer_lines buffer(&infile, searchString, replaceString);
+
+	size_t search_len = searchString.size();
+	size_t buffer_size = search_len * 2;
+	std::string buffer;
+	buffer.resize(buffer_size);
+	std::streamsize bytesRead;
+	size_t pos;
+
+	infile.read(&buffer[0], buffer_size);
+	while (infile.gcount() > 0)
+	{
+		bytesRead = infile.gcount();
+		pos = buffer.find(searchString, 0);
+		if (pos == std::string::npos)
+		{
+			outfile << buffer.substr(0, search_len);
+			buffer = buffer.substr(search_len, search_len);
+			buffer.resize(buffer_size);
+			infile.read(&buffer[search_len], search_len);
+		}
+		else
+		{
+			outfile << buffer.substr(0, pos) << replaceString;
+			buffer = buffer.substr(pos + search_len, buffer_size - (pos + search_len));
+			buffer.resize(buffer_size);
+			infile.read(&buffer[buffer_size - (pos + search_len)], pos + search_len);
+		}
+	}
+	outfile << buffer.substr(0, bytesRead);
 	
 	infile.close();
 	outfile.close();

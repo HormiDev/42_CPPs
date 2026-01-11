@@ -13,7 +13,7 @@ touch "not_writable.replace" && chmod 555 "not_writable.replace" && ./Sed_is_for
 ./Sed_is_for_losers "testfile" "H" "Bye"
 ./Sed_is_for_losers "testfile" "Hello" "B"
 ./Sed_is_for_losers "testfile" "Hello" "Bye"
-./Sed_is_for_losers "testfile" "▒▒" "()"
+./Sed_is_for_losers "testfile" "██" "()"
 ./Sed_is_for_losers "testfile" "                                           ░░▒▒▒░░ ░░░░                                             
                                      ░░░░░░▒▒▒▒▒▒▒▒▒▒▒░░▒▒▒▒░░                                      
                                    ░▒▒▒▒▒▒▒▒▓▓██▓▓▒▒▒▒▒▒▒▒▒▒▒▒░░░                                   
