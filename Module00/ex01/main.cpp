@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 17:59:15 by ide-dieg          #+#    #+#             */
-/*   Updated: 2025/06/21 20:28:08 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/01/22 23:48:22 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int main(void)
 	{
 		std::cout << CYAN << BOLD << "phonebook> " << RESET;
 		std::getline(std::cin, command);
+		if (std::cin.eof())
+		{
+			std::cout << std::endl << RED << BOLD << "EOF detected. Exiting phonebook." << RESET << std::endl;
+			break;
+		}
 		if (command == "ADD")
 		{
 			Contact contact;

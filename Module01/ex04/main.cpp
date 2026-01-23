@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 13:18:39 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/01/11 05:46:48 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/01/18 21:21:53 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int main(int argc, char **argv)
 		infile.close();
 		return 1;
 	}
+
+	std::cout << "\033[32m" << "File '" << fileName << "' opened successfully." << "\033[0m" << std::endl;
 
 	size_t search_len = searchString.size();
 	size_t buffer_size = search_len * 2;

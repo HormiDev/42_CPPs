@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 02:49:13 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/06/21 18:02:43 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/01/23 00:10:01 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 NAME = megaphone
 
-SRCS = main.cpp \
-		megapho
+SRCS = megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
