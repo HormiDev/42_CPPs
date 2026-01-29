@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/22 18:28:52 by ide-dieg          #+#    #+#              #
-#    Updated: 2025/06/24 22:07:42 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/01/28 17:27:39 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC = c++
 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = dream_job
+NAME = account_test
 
 SRCS =	tests.cpp \
 		Account.cpp \

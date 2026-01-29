@@ -187,7 +187,7 @@ Debes crear y entregar tus propias pruebas para asegurarte de que tu programa fu
 
 ---
 
-## ex05Harl 2.0
+## ex05 Harl 2.0
 
 ¿Conoces a Harl? Todos lo conocemos, ¿verdad? En caso de que no, a continuación se muestran los tipos de comentarios que Harl hace, clasificados por niveles:  
 
@@ -223,7 +223,7 @@ Crea y entrega pruebas para mostrar que Harl se queja mucho. Puedes usar los eje
 
 ---
 
-## ex05Harl 2.0
+## ex06 Harl filter
 
 A veces no quieres prestar atención a todo lo que Harl dice.  
 Implementa un sistema para filtrar lo que Harl dice dependiendo de los niveles de log que quieras escuchar.  
