@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 00:33:03 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/19 13:49:37 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/19 13:52:03 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,32 @@ void Fixed::setRawBits(int const raw)
 {
 	std::cout << MAGENTA << "setRawBits member function called" << RESET << std::endl;
 	this->value = raw;
+}
+
+Fixed::Fixed(int value)
+{
+	std::cout << GREEN << "Int constructor called" << RESET << std::endl;
+	this->value = value << fractionalBits;
+}
+
+Fixed::Fixed(float value)
+{
+	std::cout << GREEN << "Float constructor called" << RESET << std::endl;
+	this->value = roundf(value * (1 << fractionalBits));
+}
+
+float	Fixed::toFloat(void) const
+{
+	return (float)this->value / (1 << fractionalBits);
+}
+
+int	Fixed::toInt(void) const
+{
+	return this->value / (1 << fractionalBits);
+}
+
+std::ostream	&operator<<(std::ostream &o, Fixed const &i)
+{
+	o << i.toFloat();
+	return o;
 }
