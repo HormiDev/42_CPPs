@@ -72,6 +72,17 @@ Además:
 
 Crear una clase `Fixed` que represente un número en **punto fijo**.
 
+Crees que conoces los números enteros y los números de coma flotante. Qué tierno.
+Por favor, lee este artículo de 3 páginas (1, 2, 3) para descubrir que no es así. Adelante, léelo.
+
+Hasta hoy, todos los números que has utilizado en tu código eran básicamente enteros o números de coma flotante, o alguna de sus variantes (short, char, long, double, etc.).
+
+Después de leer el artículo anterior, es razonable asumir que los números enteros y los de coma flotante tienen características opuestas.
+
+Pero hoy, las cosas van a cambiar. Vas a descubrir un nuevo y asombroso tipo de número: los números de punto fijo. Ausentes desde siempre en los tipos escalares de la mayoría de los lenguajes, los números de punto fijo ofrecen un valioso equilibrio entre rendimiento, exactitud, rango y precisión. Esto explica por qué son especialmente útiles en gráficos por computadora, procesamiento de sonido o programación científica, por mencionar algunos ejemplos.
+
+Dado que C++ carece de números de punto fijo, vas a añadirlos. Este artículo de Berkeley es un buen punto de partida. Si no tienes idea de qué es la Universidad de Berkeley, lee esta sección de su página de Wikipedia.
+
 ## Requisitos
 
 ### Miembros privados
@@ -92,11 +103,71 @@ Crear una clase `Fixed` que represente un número en **punto fijo**.
 • Entender constructor de copia y operador de asignación.  
 • Introducción a números en punto fijo.
 
+## Running this code:
+```c++
+#include <iostream>
+
+int main( void ) {
+	Fixed a;
+	Fixed b( a );
+	Fixed c;
+
+	c = b;
+
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	
+	return 0;
+}
+```
+## Should output something similar to:
+```bash
+$> ./a.out
+Default constructor called
+Copy constructor called
+Copy assignment operator called // <-- This line may be missing depending on your implementation
+getRawBits member function called
+Default constructor called
+Copy assignment operator called
+getRawBits member function called
+getRawBits member function called
+0
+getRawBits member function called
+0
+getRawBits member function called
+0
+Destructor called
+Destructor called
+Destructor called
+$>
+```
+
 ---
 
 # ex01 – Towards a more useful fixed-point number class
 
 Ahora la clase `Fixed` debe ser más completa.
+
+El ejercicio anterior fue un buen comienzo, pero nuestra clase es bastante inútil. Solo puede representar el valor 0.0.
+
+Añade los siguientes constructores públicos y funciones miembro públicas a tu clase:
+
+• Un constructor que reciba un entero constante como parámetro.
+Debe convertirlo al valor correspondiente de punto fijo. El número de bits fraccionales debe inicializarse a 8, como en el ejercicio 00.
+
+• Un constructor que reciba un número de coma flotante constante como parámetro.
+Debe convertirlo al valor correspondiente de punto fijo. El número de bits fraccionales debe inicializarse a 8, como en el ejercicio 00.
+
+• Una función miembro float toFloat(void) const;
+que convierta el valor de punto fijo a un número de coma flotante.
+
+• Una función miembro int toInt(void) const;
+que convierta el valor de punto fijo a un número entero.
+
+Y añade también la siguiente función a los archivos de la clase Fixed:
+
+• Una sobrecarga del operador de inserción («) que inserte una representación en coma flotante del número de punto fijo en el objeto de flujo de salida pasado como parámetro.
 
 ## Agregar
 
@@ -114,6 +185,58 @@ Ahora la clase `Fixed` debe ser más completa.
 • Conversiones entre representaciones numéricas.  
 • Sobrecarga de operadores externos.  
 • Comprender precisión y redondeo.
+
+## Running this code:
+```c++
+#include <iostream>
+
+int main( void ) {
+	Fixed a;
+	Fixed const b( 10 );
+	Fixed const c( 42.42f );
+	Fixed const d( b );
+
+	a = Fixed( 1234.4321f );
+
+	std::cout << "a is " << a << std::endl;
+	std::cout << "b is " << b << std::endl;
+	std::cout << "c is " << c << std::endl;
+	std::cout << "d is " << d << std::endl;
+
+	std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+	return 0;
+}
+```
+
+## Should output something similar to:
+```bash
+$> ./a.out
+Default constructor called
+Int constructor called
+Float constructor called
+Copy constructor called
+Copy assignment operator called
+Float constructor called
+Copy assignment operator called
+Destructor called
+a is 1234.43
+b is 10
+c is 42.4219
+d is 10
+a is 1234 as integer
+b is 10 as integer
+c is 42 as integer
+d is 10 as integer
+Destructor called
+Destructor called
+Destructor called
+Destructor called
+$>
+```
 
 ---
 

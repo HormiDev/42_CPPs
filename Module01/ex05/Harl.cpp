@@ -6,14 +6,13 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 03:36:58 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/18 04:43:20 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/19 00:22:57 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
 
 Harl::Harl(void) {}
-}
 
 void Harl::debug(void)
 {
