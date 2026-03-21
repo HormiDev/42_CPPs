@@ -8,15 +8,15 @@
 ## Reglas generales
 
 ### Compilación
-• Compila tu código con `c++` y las banderas `-Wall -Wextra -Werror`  
-• Tu código debe compilar también si agregas la bandera `-std=c++98`  
+- Compila tu código con `c++` y las banderas `-Wall -Wextra -Werror`  
+- Tu código debe compilar también si agregas la bandera `-std=c++98`  
 
 ---
 
 ### Formato y convencenciones de nombres
-• Los directorios de los ejercicios se nombrarán así: `ex00`, `ex01`, ..., `exn`  
-• Nombra tus archivos, clases, funciones, funciones miembro y atributos como se indica en las guías.  
-• Escribe los nombres de las clases en formato **UpperCamelCase**.  
+- Los directorios de los ejercicios se nombrarán así: `ex00`, `ex01`, ..., `exn`  
+- Nombra tus archivos, clases, funciones, funciones miembro y atributos como se indica en las guías.  
+- Escribe los nombres de las clases en formato **UpperCamelCase**.  
 
 Los archivos que contienen código de clases deben nombrarse según el nombre de la clase:
 
@@ -24,21 +24,21 @@ ClassName.hpp
 ClassName.cpp
 
 
-• Cada mensaje mostrado por pantalla debe terminar con un salto de línea y enviarse a la salida estándar.  
-• No se aplica Norminette en C++. Aun así, escribe código limpio, legible y comprensible para tus evaluadores.
+- Cada mensaje mostrado por pantalla debe terminar con un salto de línea y enviarse a la salida estándar.  
+- No se aplica Norminette en C++. Aun así, escribe código limpio, legible y comprensible para tus evaluadores.
 
 ---
 
 ### Permitido / Prohibido
 
-• Puedes usar casi todo de la biblioteca estándar de C++.  
-• Está prohibido usar bibliotecas externas (incluyendo C++11 y superiores, o Boost).  
-• Las funciones `printf()`, `malloc()` y `free()` están prohibidas.  
-• Salvo indicación contraria, están prohibidas:
+- Puedes usar casi todo de la biblioteca estándar de C++.  
+- Está prohibido usar bibliotecas externas (incluyendo C++11 y superiores, o Boost).  
+- Las funciones `printf()`, `malloc()` y `free()` están prohibidas.  
+- Salvo indicación contraria, están prohibidas:
   - `using namespace`
   - `friend`
 
-• Solo puedes usar la STL en los Módulos 08 y 09.  
+- Solo puedes usar la STL en los Módulos 08 y 09.  
   No puedes usar contenedores (`vector`, `map`, etc.) ni `<algorithm>` en este módulo.
 
 ---
@@ -49,20 +49,20 @@ Desde ahora, todas tus clases deben implementarse en **Forma Canónica Ortodoxa*
 
 Cada clase debe contener obligatoriamente:
 
-• Constructor por defecto  
-• Constructor de copia  
-• Operador de asignación por copia  
-• Destructor  
+- Constructor por defecto  
+- Constructor de copia  
+- Operador de asignación por copia  
+- Destructor  
 
 Además:
 
-• El código debe dividirse en:
+- El código debe dividirse en:
   - Archivo de cabecera (`.hpp`)
   - Archivo de implementación (`.cpp`)
 
-• Ninguna función (excepto plantillas) debe implementarse en el header.  
-• Debes proteger tus headers con `include guards`.  
-• No debe haber fugas de memoria.
+- Ninguna función (excepto plantillas) debe implementarse en el header.  
+- Debes proteger tus headers con `include guards`.  
+- No debe haber fugas de memoria.
 
 ---
 
@@ -86,24 +86,24 @@ Dado que C++ carece de números de punto fijo, vas a añadirlos. Este artículo 
 ## Requisitos
 
 ### Miembros privados
-• Un entero que almacene el valor del número en punto fijo.  
-• Un entero estático constante que represente la cantidad de bits fraccionarios (valor fijo: 8).
+- Un entero que almacene el valor del número en punto fijo.  
+- Un entero estático constante que represente la cantidad de bits fraccionarios (valor fijo: 8).
 
 ### Miembros públicos
-• Constructor por defecto (inicializa el valor en 0).  
-• Constructor de copia.  
-• Operador de asignación.  
-• Destructor.  
-• `int getRawBits(void) const;`  
-• `void setRawBits(int const raw);`
+- Constructor por defecto (inicializa el valor en 0).  
+- Constructor de copia.  
+- Operador de asignación.  
+- Destructor.  
+- `int getRawBits(void) const;`  
+- `void setRawBits(int const raw);`
 
 ## Objetivo pedagógico
 
-• Comprender la Forma Canónica Ortodoxa.  
-• Entender constructor de copia y operador de asignación.  
-• Introducción a números en punto fijo.
+- Comprender la Forma Canónica Ortodoxa.  
+- Entender constructor de copia y operador de asignación.  
+- Introducción a números en punto fijo.
 
-## Running this code:
+### ejecuta este codigo:
 ```c++
 #include <iostream>
 
@@ -121,7 +121,7 @@ int main( void ) {
 	return 0;
 }
 ```
-## Should output something similar to:
+### La salida deveria verse similar a esta:
 ```bash
 $> ./a.out
 Default constructor called
@@ -153,40 +153,40 @@ El ejercicio anterior fue un buen comienzo, pero nuestra clase es bastante inút
 
 Añade los siguientes constructores públicos y funciones miembro públicas a tu clase:
 
-• Un constructor que reciba un entero constante como parámetro.
+- Un constructor que reciba un entero constante como parámetro.
 Debe convertirlo al valor correspondiente de punto fijo. El número de bits fraccionales debe inicializarse a 8, como en el ejercicio 00.
 
-• Un constructor que reciba un número de coma flotante constante como parámetro.
+- Un constructor que reciba un número de coma flotante constante como parámetro.
 Debe convertirlo al valor correspondiente de punto fijo. El número de bits fraccionales debe inicializarse a 8, como en el ejercicio 00.
 
-• Una función miembro float toFloat(void) const;
+- Una función miembro float toFloat(void) const;
 que convierta el valor de punto fijo a un número de coma flotante.
 
-• Una función miembro int toInt(void) const;
+- Una función miembro int toInt(void) const;
 que convierta el valor de punto fijo a un número entero.
 
 Y añade también la siguiente función a los archivos de la clase Fixed:
 
-• Una sobrecarga del operador de inserción («) que inserte una representación en coma flotante del número de punto fijo en el objeto de flujo de salida pasado como parámetro.
+- Una sobrecarga del operador de inserción («) que inserte una representación en coma flotante del número de punto fijo en el objeto de flujo de salida pasado como parámetro.
 
 ## Agregar
 
-• Constructor que reciba un `int`.  
-• Constructor que reciba un `float`.  
-• `float toFloat(void) const;`  
-• `int toInt(void) const;`  
-• Sobrecarga del operador `<<` para mostrar el número como `float`.
+- Constructor que reciba un `int`.  
+- Constructor que reciba un `float`.  
+- `float toFloat(void) const;`  
+- `int toInt(void) const;`  
+- Sobrecarga del operador `<<` para mostrar el número como `float`.
 
 ## Autorizado
-• `roundf()` de `<cmath>`
+- `roundf()` de `<cmath>`
 
 ## Objetivo pedagógico
 
-• Conversiones entre representaciones numéricas.  
-• Sobrecarga de operadores externos.  
-• Comprender precisión y redondeo.
+- Conversiones entre representaciones numéricas.  
+- Sobrecarga de operadores externos.  
+- Comprender precisión y redondeo.
 
-## Running this code:
+### Running this code:
 ```c++
 #include <iostream>
 
@@ -212,7 +212,7 @@ int main( void ) {
 }
 ```
 
-## Should output something similar to:
+### La salida deveria verse similar a esta:
 ```bash
 $> ./a.out
 Default constructor called
@@ -242,7 +242,57 @@ $>
 
 # ex02 – Now we're talking
 
-## Sobrecargar operadores
+### Sobrecargar operadores
+
+Agrega funciones miembro públicas a tu clase para sobrecargar los siguientes operadores:
+
+- Los 6 operadores de comparación: >, <, >=, <=, == y !=.
+- Los 4 operadores aritméticos: +, -, * y /.
+- Los 4 operadores de incremento/decremento (pre-incremento y post-incremento, pre-decremento y post-decremento), que aumentarán o disminuirán el valor de punto fijo en la menor cantidad representable ϵ, tal que 1 + ϵ > 1.
+
+Agrega estas cuatro funciones miembro públicas sobrecargadas a tu clase:
+- Una función miembro estática min que tome dos referencias a números de punto fijo como parámetros y devuelva una referencia al menor de ellos.
+- Una función miembro estática min que tome dos referencias a números de punto fijo constantes como parámetros y devuelva una referencia al menor de ellos.
+- Una función miembro estática max que tome dos referencias a números de punto fijo como parámetros y devuelva una referencia al mayor de ellos.
+- Una función miembro estática max que tome dos referencias a números de punto fijo constantes como parámetros y devuelva una referencia al mayor de ellos.
+
+### Depende de ti probar cada característica de tu clase. Sin embargo, al ejecutar el siguiente código:
+```c++
+#include <iostream>
+
+int main( void ) {
+	Fixed a;
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
+
+	std::cout << b << std::endl;
+
+	std::cout << Fixed::max( a, b ) << std::endl;
+
+	return 0;
+}
+
+```
+
+### Debería producir una salida similar a la siguiente (para mayor claridad, los mensajes del constructor/destructor se han eliminado en el ejemplo a continuación):
+```bash
+$> ./a.out
+0
+0.00390625
+0.00390625
+0.00390625
+0.0078125
+10.1016
+10.1016
+$>
+```
+
+### Si en algún momento realizas una división entre 0, es aceptable que el programa se bloquee.
 
 ### Operadores de comparación
 `>`, `<`, `>=`, `<=`, `==`, `!=`
@@ -251,26 +301,26 @@ $>
 `+`, `-`, `*`, `/`
 
 ### Incremento y decremento
-• Pre-incremento  
-• Post-incremento  
-• Pre-decremento  
-• Post-decremento  
+- Pre-incremento  
+- Post-incremento  
+- Pre-decremento  
+- Post-decremento  
 
 Estos deben modificar el valor por la unidad mínima representable (ϵ).
 
 ## Funciones estáticas
 
-• `min(Fixed&, Fixed&)`  
-• `min(const Fixed&, const Fixed&)`  
-• `max(Fixed&, Fixed&)`  
-• `max(const Fixed&, const Fixed&)`
+- `min(Fixed&, Fixed&)`  
+- `min(const Fixed&, const Fixed&)`  
+- `max(Fixed&, Fixed&)`  
+- `max(const Fixed&, const Fixed&)`
 
 ## Objetivo pedagógico
 
-• Polimorfismo ad-hoc.  
-• Sobrecarga de operadores.  
-• Diferencia entre pre y post incremento.  
-• Diseño correcto de clases numéricas.
+- Polimorfismo ad-hoc.  
+- Sobrecarga de operadores.  
+- Diferencia entre pre y post incremento.  
+- Diseño correcto de clases numéricas.
 
 ---
 
@@ -287,15 +337,15 @@ Determinar si un punto está dentro de un triángulo.
 Debe implementarse en Forma Canónica Ortodoxa.
 
 ### Miembros privados
-• `Fixed const x;`  
-• `Fixed const y;`
+- `Fixed const x;`  
+- `Fixed const y;`
 
 ### Miembros públicos
-• Constructor por defecto (0,0).  
-• Constructor con dos `float`.  
-• Constructor de copia.  
-• Operador de asignación.  
-• Destructor.
+- Constructor por defecto (0,0).  
+- Constructor con dos `float`.  
+- Constructor de copia.  
+- Operador de asignación.  
+- Destructor.
 
 ## Función a implementar
 

@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 00:33:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/19 13:56:05 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/20 19:14:18 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main( void ) {
 	Fixed b( a );
 	Fixed c;
 
+	b.setRawBits(42);
 	c = b;
 
 	std::cout << a.getRawBits() << std::endl;
