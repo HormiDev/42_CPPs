@@ -326,7 +326,41 @@ Estos deben modificar el valor por la unidad mínima representable (ϵ).
 
 # ex03 – BSP
 
+Ahora que tienes una clase Fixed funcional, sería buena idea usarla.
+Implementa una función que indique si un punto está dentro de un triángulo o no.
+Muy útil, ¿verdad?
+
 BSP significa **Binary Space Partitioning**.
+
+Comencemos creando la clase **Point** en Forma Canónica Ortodoxa que representa un punto en 2D:
+
+**• Miembros privados:**
+- Un atributo constante de tipo Fixed llamado `x`.  
+- Un atributo constante de tipo Fixed llamado `y`.  
+- Cualquier otro que consideres útil.  
+
+**• Miembros públicos:**
+- Un constructor por defecto que inicializa `x` e `y` a 0.  
+- Un constructor que recibe dos números de coma flotante constantes como parámetros.  
+  Inicializa `x` e `y` con esos valores.  
+- Un constructor de copia.  
+- Un operador de asignación por copia sobrecargado.  
+- Un destructor.  
+- Cualquier otro que consideres útil.  
+
+Para concluir, implementa la siguiente función en el archivo correspondiente:
+
+```cpp
+bool bsp( Point const a, Point const b, Point const c, Point const point);
+```
+
+- a, b, c: Los vértices de nuestro querido triángulo.
+- point: El punto a comprobar.
+- Retorna: true si el punto está dentro del triángulo. false en caso contrario.
+
+Por lo tanto, si el punto es un vértice o está sobre un lado, la función debe devolver false.
+
+Implementa y entrega tus propias pruebas para asegurarte de que tu clase se comporta como se espera.
 
 ## Objetivo
 
@@ -351,4 +385,4 @@ Debe implementarse en Forma Canónica Ortodoxa.
 
 ```cpp
 bool bsp(Point const a, Point const b, Point const c, Point const point);
-
+```
