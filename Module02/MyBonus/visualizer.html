@@ -59,6 +59,23 @@
     button:hover {
       opacity: 0.8;
     }
+
+    .data-box {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid cyan;
+      border-radius: 6px;
+      padding: 10px 15px;
+      font-family: monospace;
+      font-size: 14px;
+      color: white;
+      pointer-events: none;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
   </style>
 </head>
 <body>
@@ -68,7 +85,14 @@
   <button id="playBtn">Play</button>
 </div>
 
-<div class="info">Haz 3 clics dentro del recuadro para crear un triángulo</div>
+<div class="data-box" id="dataBox">
+  <span><b>A:</b> <span id="vA">-</span></span>
+  <span><b>B:</b> <span id="vB">-</span></span>
+  <span><b>C:</b> <span id="vC">-</span></span>
+  <span><b>P:</b> <span id="vP">-</span></span>
+</div>
+
+<div class="info" id="infoText">Haz 3 clics dentro del recuadro para crear un triángulo (Faltan 3)</div>
 
 <canvas id="canvas"></canvas>
 
@@ -77,6 +101,7 @@
   const ctx = canvas.getContext('2d');
   const resetBtn = document.getElementById('resetBtn');
   const playBtn = document.getElementById('playBtn');
+  const infoText = document.getElementById('infoText');
 
   function resizeCanvas() {
     canvas.width = Math.min(window.innerWidth, 1500);
@@ -102,6 +127,9 @@
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     puntos.push({ x, y });
+    
+    infoText.textContent = `Haz 3 clics dentro del recuadro para crear un triángulo (Faltan ${3 - puntos.length})`;
+    
     ctx.fillStyle = 'white';
     ctx.beginPath();
     ctx.arc(x, y, 4, 0, Math.PI * 2);
@@ -109,6 +137,7 @@
     if (puntos.length === 3) {
       prepararTriangulo();
       trianguloDibujado = true;
+      infoText.textContent = 'Mueve el ratón para comprobar colisiones o pulsa Play para animar.';
       dibujar();
     }
   });
@@ -144,19 +173,33 @@
   let mousePos = { x: 0, y: 0 };
   let comprobando = false;
 
+  const displayA = document.getElementById('vA');
+  const displayB = document.getElementById('vB');
+  const displayC = document.getElementById('vC');
+  const displayP = document.getElementById('vP');
+
+  function updateDataDisplay(a, b, c, p) {
+    displayA.textContent = `${a.x}, ${a.y}`;
+    displayB.textContent = `${b.x}, ${b.y}`;
+    displayC.textContent = `${c.x}, ${c.y}`;
+    displayP.textContent = `${p.x}, ${p.y}`;
+  }
+
   function verificarColision(vertices) {
+    const a = { x: Math.round(vertices[0].x), y: Math.round(vertices[0].y) };
+    const b = { x: Math.round(vertices[1].x), y: Math.round(vertices[1].y) };
+    const c = { x: Math.round(vertices[2].x), y: Math.round(vertices[2].y) };
+    const p = { x: Math.round(mousePos.x), y: Math.round(mousePos.y) };
+
+    updateDataDisplay(a, b, c, p);
+    
     if (comprobando) return;
     comprobando = true;
     
     fetch('http://localhost:8000/check', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        a: vertices[0],
-        b: vertices[1],
-        c: vertices[2],
-        p: mousePos
-      })
+      body: JSON.stringify({ a, b, c, p })
     })
     .then(res => res.text())
     .then(text => {
@@ -242,7 +285,14 @@
     trianguloDibujado = false;
     animando = false;
     angulo = 0;
+    centro = { x: 0, y: 0 };
     playBtn.textContent = 'Play';
+    displayA.textContent = '-';
+    displayB.textContent = '-';
+    displayC.textContent = '-';
+    displayP.textContent = '-';
+    bgColor = 'red';
+    infoText.textContent = 'Haz 3 clics dentro del recuadro para crear un triángulo (Faltan 3)';
   });
 </script>
 
