@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Triángulo con 3 clics</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden; /* Evitar scroll horizontal */
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #0f172a;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    .topbar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+    }
+
+    canvas {
+      border: 2px solid #fff;
+      background: #020617;
+      display: block;
+    }
+
+    .info {
+      position: absolute;
+      top: 70px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 6px;
+      background: cyan;
+      color: black;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <button id="resetBtn">Borrar</button>
+  <button id="playBtn">Play</button>
+</div>
+
+<div class="info">Haz 3 clics dentro del recuadro para crear un triángulo</div>
+
+<canvas id="canvas"></canvas>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const resetBtn = document.getElementById('resetBtn');
+  const playBtn = document.getElementById('playBtn');
+
+  function resizeCanvas() {
+    canvas.width = Math.min(window.innerWidth, 1500);
+    canvas.height = Math.min(window.innerHeight - 100, 1000);
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  let puntos = [];
+  let trianguloDibujado = false;
+
+  let animando = false;
+  let centro = { x: 0, y: 0 };
+  let puntosRelativos = [];
+  let dx = 0, dy = 0;
+  let angulo = 0;
+  let velocidadAngular = 0.02;
+  let bgColor = 'red'; // default color when tracking
+
+  canvas.addEventListener('click', (e) => {
+    if (trianguloDibujado || puntos.length >= 3) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    puntos.push({ x, y });
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.arc(x, y, 4, 0, Math.PI * 2);
+    ctx.fill();
+    if (puntos.length === 3) {
+      prepararTriangulo();
+      trianguloDibujado = true;
+      dibujar();
+    }
+  });
+
+  function prepararTriangulo() {
+    centro.x = (puntos[0].x + puntos[1].x + puntos[2].x) / 3;
+    centro.y = (puntos[0].y + puntos[1].y + puntos[2].y) / 3;
+    puntosRelativos = puntos.map(p => ({ x: p.x - centro.x, y: p.y - centro.y }));
+    dx = (Math.random() * 4) - 2;
+    dy = (Math.random() * 4) - 2;
+    if (dx === 0) dx = 1;
+    if (dy === 0) dy = 1;
+  }
+
+  function dibujar() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.translate(centro.x, centro.y);
+    ctx.rotate(angulo);
+    ctx.fillStyle = bgColor;
+    ctx.strokeStyle = 'cyan';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(puntosRelativos[0].x, puntosRelativos[0].y);
+    ctx.lineTo(puntosRelativos[1].x, puntosRelativos[1].y);
+    ctx.lineTo(puntosRelativos[2].x, puntosRelativos[2].y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  let mousePos = { x: 0, y: 0 };
+  let comprobando = false;
+
+  function verificarColision(vertices) {
+    if (comprobando) return;
+    comprobando = true;
+    
+    fetch('http://localhost:8000/check', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        a: vertices[0],
+        b: vertices[1],
+        c: vertices[2],
+        p: mousePos
+      })
+    })
+    .then(res => res.text())
+    .then(text => {
+      if (text.trim() === 'ok') {
+        bgColor = 'green';
+      } else {
+        bgColor = 'red';
+      }
+      if (!animando) dibujar(); // Redibujar si está quieto
+    })
+    .catch(err => console.error(err))
+    .finally(() => {
+      comprobando = false;
+    });
+  }
+
+  canvas.addEventListener('mousemove', (e) => {
+    if (!trianguloDibujado) return;
+    const rect = canvas.getBoundingClientRect();
+    mousePos.x = e.clientX - rect.left;
+    mousePos.y = e.clientY - rect.top;
+
+    if (!animando) {
+      const vertices = puntosRelativos.map(p => {
+        const xRot = p.x * Math.cos(angulo) - p.y * Math.sin(angulo);
+        const yRot = p.x * Math.sin(angulo) + p.y * Math.cos(angulo);
+        return { x: centro.x + xRot, y: centro.y + yRot };
+      });
+      verificarColision(vertices);
+    }
+  });
+
+  function actualizar() {
+    if (!animando) return;
+    centro.x += dx;
+    centro.y += dy;
+    angulo += velocidadAngular;
+    const vertices = puntosRelativos.map(p => {
+      const xRot = p.x * Math.cos(angulo) - p.y * Math.sin(angulo);
+      const yRot = p.x * Math.sin(angulo) + p.y * Math.cos(angulo);
+      return { x: centro.x + xRot, y: centro.y + yRot };
+    });
+    let reboteX = false;
+    let reboteY = false;
+    vertices.forEach(v => {
+      if (v.x <= 0 || v.x >= canvas.width) reboteX = true;
+      if (v.y <= 0 || v.y >= canvas.height) reboteY = true;
+    });
+    if (reboteX) {
+      dx *= -1;
+      velocidadAngular *= -1;
+      const minX = Math.min(...vertices.map(v => v.x));
+      const maxX = Math.max(...vertices.map(v => v.x));
+      if (minX < 0) centro.x += -minX + 1;
+      if (maxX > canvas.width) centro.x -= maxX - canvas.width + 1;
+    }
+    if (reboteY) {
+      dy *= -1;
+      velocidadAngular *= -1;
+      const minY = Math.min(...vertices.map(v => v.y));
+      const maxY = Math.max(...vertices.map(v => v.y));
+      if (minY < 0) centro.y += -minY + 1;
+      if (maxY > canvas.height) centro.y -= maxY - canvas.height + 1;
+    }
+    
+    verificarColision(vertices);
+    
+    dibujar();
+    requestAnimationFrame(actualizar);
+  }
+
+  playBtn.addEventListener('click', () => {
+    if (!trianguloDibujado) return;
+    animando = !animando;
+    playBtn.textContent = animando ? 'Stop' : 'Play';
+    if (animando) actualizar();
+  });
+
+  resetBtn.addEventListener('click', () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    puntos = [];
+    puntosRelativos = [];
+    trianguloDibujado = false;
+    animando = false;
+    angulo = 0;
+    playBtn.textContent = 'Play';
+  });
+</script>
+
+</body>
+</html>
