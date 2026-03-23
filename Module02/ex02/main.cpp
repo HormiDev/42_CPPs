@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/19 00:33:05 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/21 04:51:34 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/22 22:04:16 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,9 +148,27 @@ int main( void ) {
 
 	std::cout << CYAN << "\nTEST OPERATOR / :" << RESET << std::endl;
 	std::cout << a << " / " << b << " = " << a / b << std::endl;
-	std::cout << a << " / " << c << " = " << a / c<< std::endl;
-	std::cout<< b<< " / "<< c<< " = "<< b / c<< std::endl;
-	
+	std::cout << a << " / " << c << " = " << a / c << std::endl;
+	std::cout << b << " / " << c << " = " << b / c << std::endl;
+
+	Fixed e(6);
+	Fixed f(-2);
+	Fixed g;
+	std::cout << e << " / " << g << " = " << e / g << std::endl;
+	std::cout << f << " / " << g << " = " << f / g << std::endl;
+
+	e = 10.0f / 0.0f;
+	f = -10.0f / 0.0f;
+	g = 0.0f / 0.0f;
+
+	std::cout << "+inf " << e << std::endl;
+	std::cout << "-inf " << f << std::endl;
+	std::cout << "NaN " << g << std::endl;
+
+	int h = e.getRawBits();
+
+	std::cout << "Raw bits of +inf: " << h << std::endl;
+
 	std::cout << CYAN << "\nTEST OPERATOR ++ :" << RESET << std::endl;
 	std::cout << "++" << a << " = " << ++a << std::endl;
 	std::cout << a << "++ = " << a++ << " and a value is " << a << std::endl;
