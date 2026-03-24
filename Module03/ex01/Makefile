@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/19 01:53:22 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/03/23 14:04:10 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/03/24 01:19:34 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 NAME = a.out
 
 SRCS =	main.cpp \
-		ClapTrap.cpp 
+		ClapTrap.cpp \
+		ScavTrap.cpp
 
 
 OBJS = $(SRCS:.cpp=.o)
