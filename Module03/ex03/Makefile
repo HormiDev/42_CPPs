@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/19 01:53:22 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/03/27 01:08:21 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/03/27 01:14:26 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,15 @@ YELLOW = \033[0;33m
 
 CC = c++
 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 # -Wshadow -Wno-shadow
 
 NAME = a.out
 
 SRCS =	main.cpp \
-		ClapTrap.cpp 
+		ClapTrap.cpp \
+		FragTrap.cpp \
+		ScavTrap.cpp \
+		DiamondTrap.cpp
 
 
 OBJS = $(SRCS:.cpp=.o)
@@ -75,9 +78,9 @@ ide-dieg:
 	@echo "$(NARANJA)╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝╚═════╝ ╚══════╝  ╚═══╝  $(VERDE)       ╚═╝  $(NC)"
 
 cpp_title:
-	@echo "  ___  __     __   ____  ____  ____   __   ____  "
-	@echo " / __)(  )   / _\ (  _ \(_  _)(  _ \ / _\ (  _ \ "
-	@echo "( (__ / (_/\/    \ ) __/  )(   )   //    \ ) __/ "
-	@echo " \___)\____/\_/\_/(__)   (__) (__\_)\_/\_/(__)   "
+	@echo " ____  __   __   _  _   __   __ _  ____  ____  ____   __   ____  "
+	@echo "(    \(  ) / _\ ( \/ ) /  \ (  ( \(    \(_  _)(  _ \ / _\ (  _ \ "
+	@echo " ) D ( )( /    \/ \/ \(  O )/    / ) D (  )(   )   //    \ ) __/ "
+	@echo "(____/(__)\_/\_/\_)(_/ \__/ \_)__)(____/ (__) (__\_)\_/\_/(__)   "
 
 .PHONY: all clean fclean re ide-dieg cpp_title

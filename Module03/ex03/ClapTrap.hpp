@@ -6,12 +6,12 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/23 00:16:58 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/26 16:51:15 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/26 13:25:32 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CLAPTRAP_HPP
-#define CLAPTRAP_HPP
+#ifndef FLAGTRAP_HPP
+#define FLAGTRAP_HPP
 
 #include <iostream>
 
@@ -41,7 +41,6 @@ class ClapTrap
 		void 		attack(const std::string& target);
 		void		takeDamage(unsigned int amount);
 		void		beRepaired(unsigned int amount);
-		
 };
 
 #endif

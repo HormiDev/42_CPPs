@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/12 03:51:51 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/03/18 04:57:56 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/25 13:55:39 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int argc, char **argv)
 {
     Harl	harl;
-	std::string levels[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "I am not sure how tired I am today..."};
+	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int level = 0;
 
 	if (argc != 2)
@@ -23,7 +23,7 @@ int main(int argc, char **argv)
 		std::cerr << "Error: Usage: " << argv[0] << " <complaint>" << std::endl;
 		return (1);
 	}
-	while (level < 5)
+	while (level < 4)
 	{
 		if (levels[level] == argv[1])
 			break;
@@ -33,19 +33,13 @@ int main(int argc, char **argv)
 	{
 	case 0:
 		harl.complain("DEBUG");
-		harl.complain("INFO");
-		harl.complain("WARNING");
-		harl.complain("ERROR");
-		break;
+		// fallthrough
 	case 1:
 		harl.complain("INFO");
-		harl.complain("WARNING");
-		harl.complain("ERROR");
-		break;
+		// fallthrough
 	case 2:
 		harl.complain("WARNING");
-		harl.complain("ERROR");
-		break;
+		// fallthrough
 	case 3:
 		harl.complain("ERROR");
 		break;
