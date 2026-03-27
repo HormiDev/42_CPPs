@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 02:51:35 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/01/28 12:35:29 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/03/24 18:32:22 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void ft_str_to_upper_extended(char *str)
 int main(int argc, char **argv)
 {
 	int					i;
+	std::string			print;
 
 	if (argc < 2)
 	{
@@ -63,8 +64,6 @@ int main(int argc, char **argv)
 	{
 		ft_str_to_upper_extended(argv[i]);
 		std::cout << argv[i];
-		if (i < argc - 1)
-			std::cout << " ";
 		i++;
 	}
 	std::cout << std::endl;
