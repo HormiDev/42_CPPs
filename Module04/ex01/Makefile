@@ -6,7 +6,7 @@
 #    By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/03/19 01:53:22 by ide-dieg          #+#    #+#              #
-#    Updated: 2026/04/02 04:46:33 by ide-dieg         ###   ########.fr        #
+#    Updated: 2026/04/02 04:46:42 by ide-dieg         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ NAME = Polymorphism
 SRCS =	main.cpp \
 		Animal.cpp \
 		Dog.cpp \
-		Cat.cpp
+		Cat.cpp \
+		Brain.cpp
 
 
 OBJS = $(SRCS:.cpp=.o)

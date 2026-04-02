@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/29 04:00:29 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/04/02 03:33:52 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/04/02 03:33:45 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 class Animal
 {
 	protected:
-		std::string	type;
+		std::string		type;
 	public:
 						Animal();
 						Animal(const Animal &other);
