@@ -265,9 +265,9 @@ Para lograrlo:
 
 - Convierte la función `makeSound()` en una **función virtual pura**
 
-'''cpp
+```cpp
 virtual void makeSound() const = 0;
-'''
+```
 
 Esto hará que **Animal** sea abstracta automáticamente.
 
@@ -277,9 +277,9 @@ Esto hará que **Animal** sea abstracta automáticamente.
 
 - No debe ser posible hacer:
 
-'''cpp
+```cpp
 Animal a; // ❌ error de compilación
-'''
+```
 
 - El resto del programa debe seguir funcionando igual que antes  
 - **Dog** y **Cat** deben seguir implementando `makeSound()` correctamente  
@@ -318,7 +318,7 @@ En este ejercicio, implementarás interfaces para consolidar lo aprendido en el 
 
 Completa la definición de la clase **AMateria** e implementa las funciones necesarias:
 
-'''cpp
+```cpp
 class AMateria
 {
 protected:
@@ -332,7 +332,7 @@ public:
     virtual AMateria* clone() const = 0;
     virtual void use(ICharacter& target);
 };
-'''
+```
 
 - `getType()` devuelve el tipo de la materia  
 - `clone()` es **virtual pura**  
@@ -362,9 +362,9 @@ Implementa las siguientes clases derivadas de **AMateria**:
 
 La función:
 
-'''cpp
+```cpp
 use(ICharacter& target)
-'''
+```
 
 Debe mostrar:
 
@@ -382,7 +382,7 @@ Donde `<name>` es el nombre del personaje objetivo (sin los símbolos `< >`).
 
 Implementa la clase concreta **Character** basada en la interfaz:
 
-'''cpp
+```cpp
 class ICharacter
 {
 public:
@@ -392,7 +392,7 @@ public:
     virtual void unequip(int idx) = 0;
     virtual void use(int idx, ICharacter& target) = 0;
 };
-'''
+```
 
 ---
 
@@ -446,7 +446,7 @@ Reglas:
 
 Implementa la clase **MateriaSource** basada en:
 
-'''cpp
+```cpp
 class IMateriaSource
 {
 public:
@@ -454,7 +454,7 @@ public:
     virtual void learnMateria(AMateria*) = 0;
     virtual AMateria* createMateria(std::string const & type) = 0;
 };
-'''
+```
 
 ---
 
@@ -483,7 +483,7 @@ MateriaSource debe poder:
 
 ## Ejemplo
 
-'''cpp
+```cpp
 int main()
 {
     IMateriaSource* src = new MateriaSource();
@@ -510,14 +510,14 @@ int main()
 
     return 0;
 }
-'''
+```
 
 Salida esperada:
 
-'''
+```
 * shoots an ice bolt at bob *
 * heals bob's wounds *
-'''
+```
 
 ---
 
