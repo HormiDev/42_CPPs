@@ -85,3 +85,12 @@ void AForm::beSigned(const Bureaucrat &bureaucrat)
 		throw GradeTooLowException();
 	isSigned = true;
 }
+
+void AForm::execute(const Bureaucrat &executor) const
+{
+	if (!isSigned)
+		throw std::runtime_error("AForm is not signed");
+	if (executor.getGrade() > gradeToExecute)
+		throw GradeTooLowException();
+	// The actual execution logic should be implemented in derived classes
+}

@@ -54,6 +54,8 @@ class AForm
 
 		void beSigned(const Bureaucrat &bureaucrat);
 
+		virtual void execute(const Bureaucrat &executor) const = 0;
+
 	private:
 		const std::string	name;
 		bool				isSigned;
