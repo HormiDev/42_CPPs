@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 01:23:27 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/08/16 23:32:20 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/08/27 23:32:36 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), target(target) 
+{
+	std::cout << "ShrubberyCreationForm parameterized constructor called" << std::endl;
+}
+
 void ShrubberyCreationForm::execute(const Bureaucrat &executor) const 
 {
 	if (!getIsSigned())
@@ -47,7 +52,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 	if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowException();
 
-	std::ofstream outfile(target + "_shrubbery");
+	std::string filename = target + "_shrubbery";
+	std::ofstream outfile(filename.c_str());
 	if (!outfile)
 	{
 		std::cerr << "Error: Could not create file " << target + "_shrubbery" << std::endl;

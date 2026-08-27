@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/07 15:21:15 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/08/16 23:42:58 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/08/28 00:05:26 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,70 @@
 
 int main()
 {
+	ShrubberyCreationForm shrubbery("garden");
+	RobotomyRequestForm robotomy("Marvin");
+	PresidentialPardonForm pardon("Zapod");
+
+	Bureaucrat boss("Boss", 1);
+	Bureaucrat employee("Employee", 50);
+	Bureaucrat intern("Intern", 150);
+
 	try
 	{
-		Bureaucrat bureaucrat("John Doe", 1);
-		std::cout << bureaucrat << std::endl;
-
-		AForm *form1 = new ShrubberyCreationForm("home");
-		AForm *form2 = new RobotomyRequestForm("robot");
-		AForm *form3 = new PresidentialPardonForm("president");
-
-		std::cout << *form1 << std::endl;
-		std::cout << *form2 << std::endl;
-		std::cout << *form3 << std::endl;
-
-		bureaucrat.signAForm(*form1);
-		bureaucrat.signAForm(*form2);
-		bureaucrat.signAForm(*form3);
+		shrubbery.execute(boss);
 	}
-	catch(const std::exception& e)
+	catch (const std::exception &e)
 	{
 		std::cerr << RED << e.what() << NC << std::endl;
 	}
-	
+
+	try
+	{
+		shrubbery.beSigned(employee);
+		shrubbery.execute(employee);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << RED << e.what() << NC << std::endl;
+	}
+
+	try
+	{
+		robotomy.beSigned(intern);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << RED << e.what() << NC << std::endl;
+	}
+
+	try
+	{
+		robotomy.beSigned(employee);
+		robotomy.execute(boss);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << RED << e.what() << NC << std::endl;
+	}
+
+	try
+	{
+		pardon.beSigned(employee);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << RED << e.what() << NC << std::endl;
+	}
+
+	try
+	{
+		pardon.beSigned(boss);
+		pardon.execute(boss);
+	}
+	catch (const std::exception &e)
+	{
+		std::cerr << RED << e.what() << NC << std::endl;
+	}
+
+	return 0;
 }
