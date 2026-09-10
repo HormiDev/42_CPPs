@@ -50,8 +50,6 @@ class Form
 				const char *what() const throw();
 		};
 
-		friend std::ostream &operator<<(std::ostream &os, const Form &form);
-
 		void beSigned(const Bureaucrat &bureaucrat);
 
 	private:
@@ -60,5 +58,7 @@ class Form
 		const int			gradeToSign;
 		const int			gradeToExecute;
 };
+
+std::ostream &operator<<(std::ostream &os, const Form &form);
 
 #endif

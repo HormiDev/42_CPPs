@@ -86,5 +86,21 @@ int main()
 		std::cerr << RED << e.what() << NC << std::endl;
 	}
 
+	std::cout << "\n--- Bureaucrat tests ---\n" << std::endl;
+
+	ShrubberyCreationForm shrubbery2("garden");
+	RobotomyRequestForm robotomy2("Marvin");
+	PresidentialPardonForm pardon2("Zapod");
+
+	boss.executeForm(shrubbery2);
+	employee.signAForm(shrubbery2);
+	employee.executeForm(shrubbery2);
+	intern.signAForm(robotomy2);
+	employee.signAForm(robotomy2);
+	boss.executeForm(robotomy2);
+	employee.signAForm(pardon2);
+	boss.signAForm(pardon2);
+	boss.executeForm(pardon2);
+
 	return 0;
 }

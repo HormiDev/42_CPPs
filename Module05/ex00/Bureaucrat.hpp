@@ -44,11 +44,11 @@ class Bureaucrat
 				const char *what() const throw();
 		};
 
-		friend std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
-
 	private:
 		const std::string name;
 		int grade;
 };
+
+std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 
 #endif

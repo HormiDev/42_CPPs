@@ -50,8 +50,6 @@ class AForm
 				const char *what() const throw();
 		};
 
-		friend std::ostream &operator<<(std::ostream &os, const AForm &AForm);
-
 		void beSigned(const Bureaucrat &bureaucrat);
 
 		virtual void execute(const Bureaucrat &executor) const = 0;
@@ -62,5 +60,7 @@ class AForm
 		const int			gradeToSign;
 		const int			gradeToExecute;
 };
+
+std::ostream &operator<<(std::ostream &os, const AForm &AForm);
 
 #endif

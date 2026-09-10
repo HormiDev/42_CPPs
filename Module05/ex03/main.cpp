@@ -98,5 +98,34 @@ int main()
 	delete robotomy;
 	delete pardon;
 
+	std::cout << "\n--- Bureaucrat tests ---\n" << std::endl;
+
+	shrubbery = someRandomIntern.makeForm("shrubbery creation", "home");
+	robotomy = someRandomIntern.makeForm("robotomy request", "Bender");
+	pardon = someRandomIntern.makeForm("presidential pardon", "Marvin");
+
+	if (!shrubbery || !robotomy || !pardon)
+	{
+		delete shrubbery;
+		delete robotomy;
+		delete pardon;
+		std::cerr << RED << "Failed to create forms." << NC << std::endl;
+		return 1;
+	}
+
+	boss.executeForm(*shrubbery);
+	employee.signAForm(*shrubbery);
+	employee.executeForm(*shrubbery);
+	intern.signAForm(*robotomy);
+	employee.signAForm(*robotomy);
+	boss.executeForm(*robotomy);
+	employee.signAForm(*pardon);
+	boss.signAForm(*pardon);
+	boss.executeForm(*pardon);
+
+	delete shrubbery;
+	delete robotomy;
+	delete pardon;
+
 	return 0;
 }
