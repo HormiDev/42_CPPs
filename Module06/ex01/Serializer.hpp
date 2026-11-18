@@ -6,14 +6,14 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/07 00:52:21 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/11/18 14:18:15 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/11/18 15:59:06 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef Serializer_HPP
 #define Serializer_HPP
 
-#include <cstdint>
+#include <stdint.h>
 #include "Data.hpp"
 
 class Serializer

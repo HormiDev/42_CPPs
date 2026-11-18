@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/18 14:19:32 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/11/18 15:16:53 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/11/18 16:00:08 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int main()
 	Data b;
 	b.data_str = "adios";
 
-	Data *ptr = NULL;
-
 	uintptr_t a_uint = Serializer::serialize(&a);
 	uintptr_t b_uint = Serializer::serialize(&b);
 	
@@ -30,6 +28,14 @@ int main()
 	std::cout << "b_ptr = " << &b << std::endl;
 	std::cout << "b_uintptr_t = " << b_uint << std::endl;
 
-	ptr = 
+	Data *ptr = NULL;
+	
+	ptr = Serializer::deserialize(a_uint);
+	std::cout << "ptr = " << ptr << std::endl;
+	std::cout << "ptr->data_str = " << ptr->data_str << std::endl;
+	ptr = Serializer::deserialize(b_uint);
+	std::cout << "ptr = " << ptr << std::endl;
+	std::cout << "ptr->data_str = " << ptr->data_str << std::endl;
+	
 	return 0;
 }
