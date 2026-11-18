@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 04:44:48 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/10/07 00:45:21 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/10/07 14:32:05 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,23 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 
 ScalarConverter::~ScalarConverter() {}
 
+bool ScalarConverter::checkFloatFormat(const std::string &literal, const char *endPtr)
+{
+	if ((*endPtr != 'f' && *endPtr != 'F') || endPtr[1] != '\0')
+		return false;
+
+	bool hasPointOrExponent = false;
+	// strtod already checked the syntax up to endPtr.
+	for (const char *ptr = literal.c_str(); ptr != endPtr; ++ptr)
+	{
+		if (*ptr == '.' || *ptr == 'e' || *ptr == 'E')
+			hasPointOrExponent = true;
+		else if ((*ptr < '0' || *ptr > '9') && *ptr != '+' && *ptr != '-')
+			return false;
+	}
+	return hasPointOrExponent;
+}
+
 void ScalarConverter::convert(const std::string &literal)
 {
 	if (literal.empty())
@@ -37,12 +54,12 @@ void ScalarConverter::convert(const std::string &literal)
 	char *endPtr = 0;
 	double value = std::strtod(literal.c_str(), &endPtr);
 
-	if (literal == "+inf" || literal == "inf" || literal == "-inf"
-		|| literal == "+inff" || literal == "inff" || literal == "-inff")
+	if (literal == "+inf" || literal == "inf" || literal == "-inf" || literal == "nan"
+		|| literal == "+inff" || literal == "inff" || literal == "-inff" || literal == "nanf")
 	{
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
-		if (literal == "+inf" || literal == "inf" || literal == "-inf")
+		if (literal == "+inf" || literal == "inf" || literal == "-inf" || literal == "nan")
 		{
 			std::cout << "float: " << literal << "f" << std::endl;
 			std::cout << "double: " << literal << std::endl;
@@ -55,7 +72,13 @@ void ScalarConverter::convert(const std::string &literal)
 		return;
 	}
 
-	if (*endPtr != '\0' && *endPtr != 'f')
+	if (*endPtr != '\0' && *endPtr != 'f' && *endPtr != 'F')
+	{
+		std::cerr << "Error: Invalid literal." << std::endl;
+		return;
+	}
+
+	if ((*endPtr == 'f' || *endPtr == 'F') && !checkFloatFormat(literal, endPtr))
 	{
 		std::cerr << "Error: Invalid literal." << std::endl;
 		return;

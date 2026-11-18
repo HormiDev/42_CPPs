@@ -26,6 +26,7 @@ class ScalarConverter
 		ScalarConverter(const ScalarConverter &other);
 		ScalarConverter &operator=(const ScalarConverter &other);
 		~ScalarConverter();
+		static bool checkFloatFormat(const std::string &literal, const char *endPtr);
 };
 
 #endif
