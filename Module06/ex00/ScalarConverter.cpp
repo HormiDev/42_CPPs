@@ -6,7 +6,7 @@
 /*   By: ide-dieg <ide-dieg@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 04:44:48 by ide-dieg          #+#    #+#             */
-/*   Updated: 2026/10/07 14:32:05 by ide-dieg         ###   ########.fr       */
+/*   Updated: 2026/11/24 20:08:14 by ide-dieg         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,23 @@ void ScalarConverter::convert(const std::string &literal)
 	if (literal.empty())
 	{
 		std::cerr << "Error: Empty literal." << std::endl;
+		return;
+	}
+	if (literal.length() == 1 && !std::isdigit(literal[0]))
+	{
+		char c = literal[0];
+		std::cout << "char: ";
+		double value = static_cast<double>(c);
+		if (value < 0 || value > 127)
+			std::cout << "impossible" << std::endl;
+		else if (std::isprint(static_cast<char>(value)))
+			std::cout << "'" << static_cast<char>(value) << "'" << std::endl;
+		else
+		std::cout << "Non displayable" << std::endl;
+	
+		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		std::cout << "float: " << formatFloatingPoint(static_cast<float>(c)) << "f" << std::endl;
+		std::cout << "double: " << formatFloatingPoint(static_cast<double>(c)) << std::endl;
 		return;
 	}
 	char *endPtr = 0;
