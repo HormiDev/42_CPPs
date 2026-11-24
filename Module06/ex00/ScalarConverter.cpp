@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <sstream>
 
 ScalarConverter::ScalarConverter() {}
 
@@ -42,6 +43,16 @@ bool ScalarConverter::checkFloatFormat(const std::string &literal, const char *e
 			return false;
 	}
 	return hasPointOrExponent;
+}
+
+static std::string formatFloatingPoint(double value)
+{
+	std::ostringstream stream;
+	stream << value;
+	std::string formatted = stream.str();
+	if (formatted.find_first_not_of("+-0123456789") == std::string::npos)
+		formatted += ".0";
+	return formatted;
 }
 
 void ScalarConverter::convert(const std::string &literal)
@@ -102,11 +113,11 @@ void ScalarConverter::convert(const std::string &literal)
 	if (value < -3.4028235e+38f || value > 3.4028235e+38f)
 		std::cout << "impossible" << std::endl;
 	else
-		std::cout << static_cast<float>(value) << "f" << std::endl;
+		std::cout << formatFloatingPoint(static_cast<float>(value)) << "f" << std::endl;
 	
 	std::cout << "double: ";
 	if (value < -1.7976931348623157e+308 || value > 1.7976931348623157e+308)
 		std::cout << "impossible" << std::endl;
 	else
-		std::cout << value << std::endl;
+		std::cout << formatFloatingPoint(value) << std::endl;
 }
